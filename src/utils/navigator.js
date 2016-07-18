@@ -16,6 +16,8 @@ import * as routes from './routes';
 import { updateScene } from '../store/action/applicationAction';
 export const initialRoute = routes.projectList;
 
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
 const styles = StyleSheet.create({
   navigationBar: {
     backgroundColor: appConst.mainBlue,
@@ -40,7 +42,12 @@ let routerMapper = {
   LeftButton: (route, navigator, index, navState) => {
     return <Text
       style={styles.navigatorButtonStyle}
-      onPress={() => navigator.pop()}>Back</Text>;
+      onPress={() => navigator.pop()}>
+      <MaterialIcon name="chevron-left" style={{
+        fontSize: 30,
+        lineHeight: 30,
+      }} />
+    </Text>;
   },
   RightButton: (route, navigator, index, navState) => {
     return <Text style={styles.navigatorButtonStyle}>Done</Text>;

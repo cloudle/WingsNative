@@ -24,7 +24,11 @@ function mapStateToProps (state) {
 export default connect(mapStateToProps)(WingsDrawer);
 
 const drawerStyles = {
-  drawer: {},
+  drawer: {
+    shadowColor: '#000000',
+    shadowOpacity: 0.8,
+    shadowRadius: 3
+  },
   main: {
     shadowColor: '#000000',
     shadowOpacity: 0.4,
@@ -34,16 +38,12 @@ const drawerStyles = {
 
 export let drawerConfig = {
   content: <Menu/>,
+  type: 'overlay',
   side: 'right',
   negotiatePan: true,
+  closedDrawerOffset: -5,
   tapToClose: true,
-  acceptDoubleTap: true,
   openDrawerOffset: 0.2,
   panOpenMask: .1,
   styles: drawerStyles,
-  // tweenHandler: (ratio, side = 'left') => {
-  //   return {
-  //     drawer: { [side] : -150 * (1 - ratio) }
-  //   }
-  // }
 };
