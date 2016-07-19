@@ -42,6 +42,6 @@ export let drawerConfig = {
   panOpenMask: .1,
   styles: drawerStyles,
   tweenHandler: (ratio) => ({
-    drawer: { shadowRadius: ratio * 100 }
+    drawer: { shadowRadius: ratio * 100, shadowOpacity: ratio + 0.5 }
   })
 };

@@ -31,7 +31,7 @@ class ProjectList extends Component {
         <Text numberOfLines={1} style={styles.headingText}>
           {project.title}
         </Text>
-        <TouchableOpacity onPress={this.presentDetail.bind(this)}>
+        <TouchableOpacity onPress={this.presentDetail.bind(this)} activeOpacity={0.6}>
           <View style={styles.contentWrapper}>
             <Image style={styles.thumbImage} source={require('./building.jpg')}/>
             <View style={styles.metaArea}>
