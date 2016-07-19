@@ -6,12 +6,8 @@ import Menu from './menu';
 
 class WingsDrawer extends Component {
   render () {
-
-    return <Drawer
-      {...drawerConfig}
-      disabled={this.props.scene.disableDrawer}
-      {...this.props}
-    />
+    return <Drawer {...drawerConfig} {...this.props}
+      disabled={this.props.scene.disableDrawer}/>
   }
 }
 
@@ -26,8 +22,8 @@ export default connect(mapStateToProps)(WingsDrawer);
 const drawerStyles = {
   drawer: {
     shadowColor: '#000000',
-    shadowOpacity: 0.8,
-    shadowRadius: 3
+    shadowOpacity: 1,
+    shadowRadius: 0
   },
   main: {
     shadowColor: '#000000',
@@ -41,9 +37,11 @@ export let drawerConfig = {
   type: 'overlay',
   side: 'right',
   negotiatePan: true,
-  closedDrawerOffset: -5,
   tapToClose: true,
   openDrawerOffset: 0.2,
   panOpenMask: .1,
   styles: drawerStyles,
+  tweenHandler: (ratio) => ({
+    drawer: { shadowRadius: ratio * 100 }
+  })
 };

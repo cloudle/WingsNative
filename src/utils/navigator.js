@@ -17,16 +17,29 @@ import { updateScene } from '../store/action/applicationAction';
 export const initialRoute = routes.projectList;
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import Icon from '../utils/fontello';
+import ResponsibleTouchArea from '../component/ResponsibleTouchArea';
 
 const styles = StyleSheet.create({
   navigationBar: {
     backgroundColor: appConst.mainBlue,
   },
-  navigatorButtonStyle: {
+  backIcon: {
     color: 'white',
-    lineHeight: 24,
     padding: 5,
   },
+	menuIcon: {
+		color: 'white',
+	},
+	areaWrapper: {
+		flex: 1,
+		// backgroundColor: 'red',
+		justifyContent: 'center'
+	},
+	title: {
+		color: 'white',
+	}
 });
 
 export let sceneConfigure = (route, routeStack) => {
@@ -39,22 +52,39 @@ export let sceneRenderer = (route, navigator) => {
 };
 
 let routerMapper = {
-  LeftButton: (route, navigator, index, navState) => {
-    return <Text
-      style={styles.navigatorButtonStyle}
-      onPress={() => navigator.pop()}>
-      <MaterialIcon name="chevron-left" style={{
-        fontSize: 30,
-        lineHeight: 30,
-      }} />
-    </Text>;
-  },
-  RightButton: (route, navigator, index, navState) => {
-    return <Text style={styles.navigatorButtonStyle}>Done</Text>;
-  },
-  Title: (route, navigator, index, navState) => {
-    return <Text style={styles.navigatorButtonStyle}>{route.title}</Text>;
-  },
+	LeftButton: (route, navigator, index, navState) => {
+		return <View style={styles.areaWrapper}>
+			<ResponsibleTouchArea
+				staticRipple={true} onPress={() => navigator.pop()}>
+				<Text style={styles.backIcon}>
+					<MaterialIcon name="chevron-left" style={{fontSize: 30}}/>
+				</Text>
+			</ResponsibleTouchArea>
+		</View>
+	},
+	RightButton: (route, navigator, index, navState) => {
+		return <View style={[styles.areaWrapper, {marginRight: 10, flexDirection: 'row'}]}>
+			<ResponsibleTouchArea
+				innerStyle={{padding: 10, paddingRight: 8, paddingBottom: 8}}
+				staticRipple={true}>
+				<Text style={styles.menuIcon}>
+					<Icon name="appbar-globe" style={{fontSize: 22}}/>
+				</Text>
+			</ResponsibleTouchArea>
+			<ResponsibleTouchArea
+				innerStyle={{padding: 10, paddingRight: 8}}
+				staticRipple={true}>
+				<Text style={styles.menuIcon}>
+					<Icon name="menu" style={{fontSize: 22}}/>
+				</Text>
+			</ResponsibleTouchArea>
+		</View>
+	},
+	Title: (route, navigator, index, navState) => {
+		return <View style={styles.areaWrapper}>
+			<Text style={styles.title}>{route.title}</Text>
+		</View>
+	},
 };
 
 export let logger = () => {
@@ -86,7 +116,9 @@ class WingsNavigator extends Component {
       style={[styles.navigator, this.props.scene.containerStyle]}
       initialRoute={initialRoute}
       configureScene={sceneConfigure}
-      navigationBar={navigationBar}
+      navigationBar={<NavigationBar
+			  routeMapper={this.props.scene.routerMapper || routerMapper}
+			  style={styles.navigationBar}/>}
       onWillFocus={(scene) => this.props.dispatch(updateScene(null, scene))}
       {...this.props}
     />

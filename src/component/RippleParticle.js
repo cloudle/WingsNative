@@ -16,7 +16,7 @@ export default class RippleParticle extends Component {
   componentDidMount () {
     Animated.timing(this.state.expandAnimation, {
       toValue: 1,
-      duration: 800,
+      duration: this.props.speed || 800,
       easing: Easing.out(Easing.cubic),
     }).start()
   }

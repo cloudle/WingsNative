@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   View,
   ScrollView,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   Text,
   Image,
   StyleSheet,
@@ -31,7 +31,7 @@ class ProjectList extends Component {
         <Text numberOfLines={1} style={styles.headingText}>
           {project.title}
         </Text>
-        <TouchableWithoutFeedback onPress={this.presentDetail.bind(this)}>
+        <TouchableOpacity onPress={this.presentDetail.bind(this)}>
           <View style={styles.contentWrapper}>
             <Image style={styles.thumbImage} source={require('./building.jpg')}/>
             <View style={styles.metaArea}>
@@ -43,7 +43,7 @@ class ProjectList extends Component {
               </Text>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
         <View style={styles.tailWrapper}>
           <Text style={styles.counterText}>
             Đã bán {project.bookCount}

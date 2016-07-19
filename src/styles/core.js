@@ -32,7 +32,7 @@ let verticalContainer = {
 };
 
 export let sceneWrapper = {
-  paddingTop: appConst.navBarHeight - appConst.listViewMargin,
+  paddingTop: appConst.navBarHeight,
   backgroundColor: appConst.color.canvasBackground,
 };
 

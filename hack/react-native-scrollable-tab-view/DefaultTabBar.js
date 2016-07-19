@@ -7,6 +7,7 @@ const {
   Animated,
 } = ReactNative;
 const Button = require('./Button');
+import ResponsibleTouchArea from '../../src/component/ResponsibleTouchArea';
 
 const DefaultTabBar = React.createClass({
   propTypes: {
@@ -36,20 +37,18 @@ const DefaultTabBar = React.createClass({
     const isTabActive = this.props.activeTab === page;
     let activeTextStyle = isTabActive ? this.props.activeTextStyle : {};
 
-    return <Button
-      style={{flex: 1}}
+    return <ResponsibleTouchArea
       key={name}
+      wrapperStyle={styles.tabWrapper}
+      innerStyle={[styles.tabInner, this.props.tabStyle]}
       accessible={true}
       accessibilityLabel={name}
       accessibilityTraits='button'
-      onPress={() => this.props.goToPage(page)}
-    >
-      <View style={[styles.tab, this.props.tabStyle]}>
-        <Text style={[this.props.textStyle, activeTextStyle]}>
-          {name}
-        </Text>
-      </View>
-    </Button>;
+      onPress={() => this.props.goToPage(page)}>
+      <Text style={[this.props.textStyle, activeTextStyle, styles.tabBarText]}>
+        {name}
+      </Text>
+    </ResponsibleTouchArea>;
   },
 
   render() {
@@ -82,7 +81,10 @@ const DefaultTabBar = React.createClass({
 });
 
 const styles = StyleSheet.create({
-  tab: {
+  tabWrapper: {
+    flex: 1,
+  },
+  tabInner: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -98,6 +100,9 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderBottomColor: '#ccc',
   },
+  tabBarText: {
+    backgroundColor: 'transparent'
+  }
 });
 
 module.exports = DefaultTabBar;

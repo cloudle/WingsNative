@@ -5,6 +5,7 @@ import {
   PanResponder,
   TouchableWithoutFeedback,
   TouchableHighlight,
+  TouchableOpacity,
   View,
   Text
 } from 'react-native';
@@ -19,7 +20,8 @@ export default class ResponsibleTouch extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      ripples: []
+      ripples: [],
+      opacityAnimation: new Animated.Value(1)
     };
 
     if (this.props.debounce) {
@@ -31,28 +33,41 @@ export default class ResponsibleTouch extends Component {
     let { locationX, locationY, pageX, pageY } = e.nativeEvent;
 
     this.refs.wrapperView.measure((fx, fy, wrapperWidth, wrapperHeight, px, py) => {
-      let rippleRadius = 0, touchX = pageX - px, touchY = pageY - py;
+      let ripplePosition, rippleRadius = 0, touchX = pageX - px, touchY = pageY - py;
 
-      //Get the user's press location (4 places) to generate Ripple effect with correct radius! Math.sqrt(Math.pow(Xa - Xb) + Math.pow(Ya - Yb))
-      if (touchX > wrapperWidth / 2) {
-        if (touchY > wrapperHeight / 2) {
-          // console.log("Bottom-Right");
-          rippleRadius = Math.sqrt(Math.pow(touchX, 2) + Math.pow(touchY, 2));
-        } else {
-          // console.log("Top-Right");
-          rippleRadius = Math.sqrt(Math.pow(touchX, 2) + Math.pow(touchY - wrapperHeight, 2));
+      if (this.props.staticRipple) {
+        rippleRadius = wrapperWidth / 2;
+        ripplePosition = {
+          top: (wrapperHeight / 2) - rippleRadius,
+          left: (wrapperWidth / 2) - rippleRadius,
         }
       } else {
-        if (touchY > wrapperHeight / 2) {
-          // console.log("Bottom-Left");
-          rippleRadius = Math.sqrt(Math.pow(touchX - wrapperWidth, 2) + Math.pow(touchY, 2));
+        //Get the user's press location (4 places) to generate Ripple effect with correct radius! Math.sqrt(Math.pow(Xa - Xb) + Math.pow(Ya - Yb))
+        if (touchX > wrapperWidth / 2) {
+          if (touchY > wrapperHeight / 2) {
+            // console.log("Bottom-Right");
+            rippleRadius = Math.sqrt(Math.pow(touchX, 2) + Math.pow(touchY, 2));
+          } else {
+            // console.log("Top-Right");
+            rippleRadius = Math.sqrt(Math.pow(touchX, 2) + Math.pow(touchY - wrapperHeight, 2));
+          }
         } else {
-          // console.log("Top-Left");
-          rippleRadius = Math.sqrt(Math.pow(touchX - wrapperWidth, 2) + Math.pow(touchY - wrapperHeight, 2));
+          if (touchY > wrapperHeight / 2) {
+            // console.log("Bottom-Left");
+            rippleRadius = Math.sqrt(Math.pow(touchX - wrapperWidth, 2) + Math.pow(touchY, 2));
+          } else {
+            // console.log("Top-Left");
+            rippleRadius = Math.sqrt(Math.pow(touchX - wrapperWidth, 2) + Math.pow(touchY - wrapperHeight, 2));
+          }
         }
+
+        rippleRadius *= 1.2;
+        ripplePosition = {
+          top: touchY - rippleRadius,
+          left: touchX - rippleRadius,
+        };
       }
 
-      rippleRadius *= 1.2;
       let newRipple = {
         index: this.rippleIndex++,
         style: {
@@ -60,8 +75,7 @@ export default class ResponsibleTouch extends Component {
           height: rippleRadius * 2,
           borderRadius: rippleRadius,
           backgroundColor: this.props.rippleColor || 'white',
-          top: touchY - rippleRadius,
-          left: touchX - rippleRadius,
+          ...ripplePosition
         }
       }, ripples = [newRipple, ...this.state.ripples];
 
@@ -81,7 +95,12 @@ export default class ResponsibleTouch extends Component {
 
   renderRipples () {
     return this.state.ripples.map(ripple => {
-      return <RippleParticle style={ripple.style} key={ripple.index} index={ripple.index}/>;
+      return <RippleParticle
+        key={ripple.index}
+        style={ripple.style}
+        index={ripple.index}
+        speed={this.props.rippleAnimationSpeed}
+      />;
     })
   }
 
@@ -90,15 +109,16 @@ export default class ResponsibleTouch extends Component {
       ref="wrapperView"
       style={[this.props.wrapperStyle, {overflow: 'hidden'}]}
       onLayout={this.props.onLayout}>
+
       {this.renderRipples()}
-      <TouchableWithoutFeedback
+      <TouchableOpacity
+        style={this.props.innerStyle}
         onPressIn={this.handlePressIn.bind(this)}
         onPress={this.handlePress.bind(this)}
         onStartShouldSetResponderCapture={() => true}>
-        <View style={this.props.innerStyle}>
-          {this.props.children}
-        </View>
-      </TouchableWithoutFeedback>
+
+        {this.props.children}
+      </TouchableOpacity>
     </View>
   }
 }
