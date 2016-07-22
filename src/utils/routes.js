@@ -7,7 +7,7 @@ import Sample from '../scenes/sample/sample';
 import ProjectList from '../scenes/project/list';
 import ProjectDetail from '../scenes/project/detail';
 
-import projectRouterMapper from '../scenes/project/routerMapper';
+import { buttons as leftButtons } from '../share/leftButtons';
 
 export let greeting = {
   title: 'Greeting',
@@ -44,7 +44,7 @@ export let sample = {
 export let projectList = {
   title: 'DỰ ÁN',
   component: ProjectList,
-  // routerMapper: projectRouterMapper
+  leftButton: leftButtons.projectSearch
 };
 
 export let projectDetail = {

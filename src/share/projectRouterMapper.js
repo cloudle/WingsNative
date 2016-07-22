@@ -8,8 +8,8 @@ import {
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import Icon from '../../utils/fontello';
-import ResponsibleTouchArea from '../../component/ResponsibleTouchArea';
+import Icon from '../utils/fontello';
+import ResponsibleTouchArea from '../component/ResponsibleTouchArea';
 
 const styles = StyleSheet.create({
 	backIcon: {

@@ -11,8 +11,8 @@ import * as appConst from '../utils/const';
 import * as textStyles from '../styles/text';
 
 import ResponsibleTouchArea from '../component/ResponsibleTouchArea';
-import LeftButtons from './LeftButtons';
-import RightButtons from './RightButtons';
+import LeftButtons from './leftButtons';
+import RightButtons from './rightButtons';
 
 export const styles = StyleSheet.create({
 	areaWrapper: {
