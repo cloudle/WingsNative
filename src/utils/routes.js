@@ -44,7 +44,7 @@ export let sample = {
 export let projectList = {
   title: 'DỰ ÁN',
   component: ProjectList,
-  routerMapper: projectRouterMapper
+  // routerMapper: projectRouterMapper
 };
 
 export let projectDetail = {
