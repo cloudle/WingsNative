@@ -36,7 +36,7 @@ class wings extends Component {
 
   render() {
     return <Provider store={store}>
-      <Drawer ref={instance => this.drawer = instance}>
+      <Drawer>
         <Navigator renderScene={sceneRenderer.bind(this)}/>
       </Drawer>
     </Provider>

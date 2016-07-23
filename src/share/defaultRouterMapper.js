@@ -13,16 +13,13 @@ import * as textStyles from '../styles/text';
 import ResponsibleTouchArea from '../component/ResponsibleTouchArea';
 import LeftButtons from './leftButtons';
 import RightButtons from './rightButtons';
+import SceneTitle from './sceneTitle';
 
 export const styles = StyleSheet.create({
 	areaWrapper: {
 		flex: 1,
 		justifyContent: 'center',
 		// backgroundColor: 'red',
-	},
-
-	title: {
-		color: 'white',
 	},
 });
 
@@ -34,8 +31,6 @@ export default routerMapper = {
 		return <RightButtons navigator={navigator}/>
 	},
 	Title: (route, navigator, index, navState) => {
-		return <View style={styles.areaWrapper}>
-			<Text style={styles.title}>{route.title}</Text>
-		</View>
+		return <SceneTitle navigator={navigator}/>
 	},
 };

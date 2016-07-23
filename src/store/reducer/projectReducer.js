@@ -1,13 +1,10 @@
-import Immutable from 'immutable';
-import {
-  IncreaseCounter,
-} from '../actions';
+import * as actions from '../actions';
 
 import { projects } from '../../utils/mock/project';
 
-const initialState = Immutable.Map({
-  all: projects,
-});
+const initialState = {
+  list: projects,
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {

@@ -1,22 +1,18 @@
-import Immutable from 'immutable';
-import {
-  IncreaseCounter,
-  UpdateScene
-} from '../actions';
+import * as actions from '../actions';
 
 import { initialRoute } from '../../utils/navigator';
 
-const initialState = Immutable.Map({
+const initialState = {
   counter: 0,
   scene: initialRoute,
-});
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case UpdateScene:
-      return state.set('scene', action.scene);
-    case IncreaseCounter:
-      return state.set('counter', state.get('counter') + action.amount);
+    case actions.UpdateScene:
+      return { ...state, scene: action.scene };
+    case actions.IncreaseCounter:
+      return { ...state, counter: state.counte + 1 };
     default:
       return state;
   }

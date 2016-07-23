@@ -68,8 +68,8 @@ class ProjectList extends Component {
 
 function mapStateToProps (state) {
   return {
-    scene: state.app.get('scene'),
-    projects: state.project.get('all'),
+    scene: state.app.scene,
+    projects: state.project.list,
   }
 }
 

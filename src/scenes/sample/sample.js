@@ -72,8 +72,8 @@ class Sample extends Component {
 
 function mapStateToProps (state) {
   return {
-    counter: state.app.get('counter'),
-    scene: state.app.get('scene')
+    counter: state.app.counter,
+    scene: state.app.scene
   }
 }
 

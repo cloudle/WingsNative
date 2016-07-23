@@ -1,12 +1,13 @@
-import {
-  IncreaseCounter,
-  UpdateScene
-} from '../actions';
+import * as actions from '../actions';
 
 export function increaseCounter (event, amount = 1) {
-  return { type: IncreaseCounter, amount };
+  return { type: actions.IncreaseCounter, amount };
 }
 
 export function updateScene (event, scene) {
-  return { type: UpdateScene, scene };
+  return { type: actions.UpdateScene, scene };
+}
+
+export function updateDrawer (event, drawer) {
+  return { type: actions.UpdateDrawer, drawer };
 }

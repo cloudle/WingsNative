@@ -53,7 +53,7 @@ class LeftButtons extends Component {
 
 function mapStateToProps (state) {
 	return {
-		scene: state.app.get('scene')
+		scene: state.app.scene
 	}
 }
 

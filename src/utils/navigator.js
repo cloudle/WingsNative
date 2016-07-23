@@ -51,7 +51,7 @@ class NavigationBar extends Component {
 
 function mapStateToProps (state) {
   return {
-    scene: state.app.get('scene')
+    scene: state.app.scene
   }
 }
 
@@ -78,6 +78,6 @@ class WingsNavigator extends Component {
 
 export default connect((state) => {
   return {
-    scene: state.app.get('scene')
+    scene: state.app.scene
   }
 })(WingsNavigator);

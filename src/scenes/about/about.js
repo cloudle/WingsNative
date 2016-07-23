@@ -33,7 +33,7 @@ class About extends Component {
 
 function mapStateToProps (state) {
   return {
-    counter: state.app.get('counter')
+    counter: state.app.counter
   }
 }
 

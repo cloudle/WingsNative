@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 
 function stateToProps (state) {
   return {
-    counter: state.app.get('counter')
+    counter: state.app.counter
   }
 }
 

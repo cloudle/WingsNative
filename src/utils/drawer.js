@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import Drawer from 'react-native-drawer';
 import Menu from './menu';
+import * as applicationActions from '../store/action/applicationAction';
 
 class WingsDrawer extends Component {
+  mapDrawerToState (drawer) {
+    this.props.appActions.updateDrawer(drawer);
+  }
+
   render () {
-    return <Drawer {...drawerConfig} {...this.props}
+    return <Drawer
+      ref={this.mapDrawerToState.bind(this)}
+      {...drawerConfig}
+      {...this.props}
       disabled={this.props.scene.disableDrawer}/>
   }
 }
 
 function mapStateToProps (state) {
   return {
-    scene: state.app.get('scene')
+    scene: state.app.scene
   }
 }
 
-export default connect(mapStateToProps)(WingsDrawer);
+function mapDispatchToProps (dispatch) {
+  return {
+    appActions: bindActionCreators(applicationActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WingsDrawer);
 
 const drawerStyles = {
   drawer: {
