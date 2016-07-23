@@ -25,7 +25,7 @@ class RightButtons extends Component {
 	}
 
 	renderGlobe () {
-		return <ResponsibleTouchArea
+		return <ResponsibleTouchArea key="globe"
 			innerStyle={{padding: 10, paddingRight: 9, paddingBottom: 9}}
 			staticRipple={true}>
 			<Text style={styles.menuIcon}>
@@ -38,7 +38,7 @@ class RightButtons extends Component {
 	}
 
 	renderBurger () {
-		return <ResponsibleTouchArea
+		return <ResponsibleTouchArea key="burger"
 			innerStyle={{padding: 10, paddingRight: 8}}
 			staticRipple={true}
 			onPress={this.context.drawer.open}>
@@ -48,10 +48,17 @@ class RightButtons extends Component {
 		</ResponsibleTouchArea>
 	}
 
+	renderButtons () {
+		if (this.props.scene && this.props.scene.rightButton) {
+			return;
+		}
+
+		return [this.renderGlobe(), this.renderBurger()];
+	}
+
 	render () {
 		return <View style={[navigatorStyles.areaWrapper, styles.areaWrapper]}>
-			{this.renderGlobe()}
-			{this.renderBurger()}
+			{this.renderButtons()}
 		</View>
 	}
 }
@@ -94,7 +101,6 @@ const styles = StyleSheet.create({
 	}
 });
 
-export const rightItems = {
-	NotificationGlobe: 'NOTIFICATION-GLOBE',
-	Burger: 'BURGER',
+export const buttons = {
+	empty: 'EMPTY',
 };

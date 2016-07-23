@@ -34,7 +34,7 @@ class LeftButtons extends Component {
 		</ResponsibleTouchArea>
 	}
 
-	renderButton () {
+	renderButtons () {
 		if (this.props.scene && this.props.scene.leftButton) {
 			switch (this.props.scene.leftButton) {
 				case buttons.projectSearch: return this.renderProjectSearch();
@@ -46,7 +46,7 @@ class LeftButtons extends Component {
 
 	render () {
 		return <View style={[navigatorStyles.areaWrapper, styles.areaWrapper]}>
-			{this.renderButton()}
+			{this.renderButtons()}
 		</View>
 	}
 }

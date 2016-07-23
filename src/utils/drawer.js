@@ -49,7 +49,7 @@ export let drawerConfig = {
   side: 'right',
   negotiatePan: true,
   tapToClose: true,
-  openDrawerOffset: 0.2,
+  openDrawerOffset: 0.15,
   panOpenMask: .1,
   styles: drawerStyles,
   tweenHandler: (ratio) => ({

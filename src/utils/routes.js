@@ -44,7 +44,7 @@ export let sample = {
 export let projectList = {
   title: 'DỰ ÁN',
   component: ProjectList,
-  leftButton: leftButtons.projectSearch
+  leftButton: leftButtons.projectSearch,
 };
 
 export let projectDetail = {
