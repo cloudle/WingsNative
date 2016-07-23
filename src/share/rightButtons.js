@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import {
 	View,
@@ -7,6 +8,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 
+import * as applicationActions from '../store/action/applicationAction';
 import ResponsibleTouchArea from '../component/ResponsibleTouchArea';
 import Icon from '../utils/fontello';
 
@@ -29,7 +31,8 @@ class RightButtons extends Component {
 	renderBurger () {
 		return <ResponsibleTouchArea
 			innerStyle={{padding: 10, paddingRight: 8}}
-			staticRipple={true}>
+			staticRipple={true}
+			onPress={this.props.toggleDrawer.bind(this)}>
 			<Text style={styles.menuIcon}>
 				<Icon name="menu" style={{fontSize: 22}}/>
 			</Text>
@@ -46,11 +49,16 @@ class RightButtons extends Component {
 
 function mapStateToProps (state) {
 	return {
-		scene: state.app.scene
+		scene: state.app.scene,
+		drawer: state.app.drawer,
 	}
 }
 
-export default connect()(RightButtons);
+function mapDispatchToProps (dispatch) {
+	return bindActionCreators(applicationActions, dispatch);
+}
+
+export default connect(mapDispatchToProps, mapDispatchToProps)(RightButtons);
 
 const styles = StyleSheet.create({
 	areaWrapper: {

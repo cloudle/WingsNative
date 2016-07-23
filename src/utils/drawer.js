@@ -8,22 +8,19 @@ import Menu from './menu';
 import * as applicationActions from '../store/action/applicationAction';
 
 class WingsDrawer extends Component {
-  mapDrawerToState (drawer) {
-    this.props.appActions.updateDrawer(drawer);
-  }
-
   render () {
     return <Drawer
-      ref={this.mapDrawerToState.bind(this)}
       {...drawerConfig}
       {...this.props}
+      open={this.props.drawerOpen}
       disabled={this.props.scene.disableDrawer}/>
   }
 }
 
 function mapStateToProps (state) {
   return {
-    scene: state.app.scene
+    scene: state.app.scene,
+    drawerOpen: state.app.drawerOpen,
   }
 }
 

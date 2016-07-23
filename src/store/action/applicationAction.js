@@ -8,6 +8,6 @@ export function updateScene (event, scene) {
   return { type: actions.UpdateScene, scene };
 }
 
-export function updateDrawer (event, drawer) {
-  return { type: actions.UpdateDrawer, drawer };
+export function toggleDrawer (event, flag) {
+  return { type: actions.ToggleDrawer, flag };
 }
