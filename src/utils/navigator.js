@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   Navigator,
   StyleSheet,
+  Platform,
 } from 'react-native'
 
 import * as appConst from '../utils/const';
@@ -30,7 +31,11 @@ const styles = StyleSheet.create({
 });
 
 export let sceneConfigure = (route, routeStack) => {
-  return route.pushDirection || Navigator.SceneConfigs.PushFromRight;
+  const platformDefaultTransition = Platform.OS === 'ios' ?
+    Navigator.SceneConfigs.PushFromRight:
+    Navigator.SceneConfigs.FloatFromBottomAndroid;
+
+  return route.pushDirection || platformDefaultTransition;
 };
 
 export let sceneRenderer = (route, navigator) => {
