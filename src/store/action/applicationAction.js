@@ -7,7 +7,3 @@ export function increaseCounter (event, amount = 1) {
 export function updateScene (event, scene) {
   return { type: actions.UpdateScene, scene };
 }
-
-export function toggleDrawer (event, flag) {
-  return { type: actions.ToggleDrawer, flag };
-}

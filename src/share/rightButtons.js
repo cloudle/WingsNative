@@ -8,13 +8,22 @@ import {
 	StyleSheet,
 } from 'react-native';
 
-import * as applicationActions from '../store/action/applicationAction';
+import { entry } from '../entry'
+import * as appActions from '../store/action/applicationAction';
 import ResponsibleTouchArea from '../component/ResponsibleTouchArea';
 import Icon from '../utils/fontello';
 
 import { styles as navigatorStyles } from './defaultRouterMapper';
 
 class RightButtons extends Component {
+	static contextTypes = {
+		drawer: React.PropTypes.object
+	};
+
+	toggleDrawer () {
+		this.props.dispatch(appActions.toggleDrawer(null, true));
+	}
+
 	renderGlobe () {
 		return <ResponsibleTouchArea
 			innerStyle={{padding: 10, paddingRight: 9, paddingBottom: 9}}
@@ -32,7 +41,7 @@ class RightButtons extends Component {
 		return <ResponsibleTouchArea
 			innerStyle={{padding: 10, paddingRight: 8}}
 			staticRipple={true}
-			onPress={this.props.toggleDrawer.bind(this)}>
+			onPress={this.context.drawer.open}>
 			<Text style={styles.menuIcon}>
 				<Icon name="menu" style={{fontSize: 22}}/>
 			</Text>
@@ -54,11 +63,7 @@ function mapStateToProps (state) {
 	}
 }
 
-function mapDispatchToProps (dispatch) {
-	return bindActionCreators(applicationActions, dispatch);
-}
-
-export default connect(mapDispatchToProps, mapDispatchToProps)(RightButtons);
+export default connect(mapStateToProps)(RightButtons);
 
 const styles = StyleSheet.create({
 	areaWrapper: {
