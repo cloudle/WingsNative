@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
+import EventEmitter from 'EventEmitter';
+
 import store from './store/store';
 import { updateScene } from './store/action/applicationAction';
 
@@ -44,3 +46,4 @@ class wings extends Component {
 }
 
 AppRegistry.registerComponent('wings', () => wings);
+export let AppEvent = new EventEmitter();

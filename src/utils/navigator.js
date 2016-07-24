@@ -15,7 +15,7 @@ import * as textStyles from '../styles/text';
 import * as routes from './routes';
 
 import { updateScene } from '../store/action/applicationAction';
-export const initialRoute = routes.projectList;
+export const initialRoute = routes.projectSearchEntry;
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -35,7 +35,7 @@ export let sceneConfigure = (route, routeStack) => {
     Navigator.SceneConfigs.PushFromRight:
     Navigator.SceneConfigs.FloatFromBottomAndroid;
 
-  return route.pushDirection || platformDefaultTransition;
+  return route.transition || platformDefaultTransition;
 };
 
 export let sceneRenderer = (route, navigator) => {
@@ -44,7 +44,6 @@ export let sceneRenderer = (route, navigator) => {
 };
 
 export let logger = () => {
-  console.log(this.name);
 };
 
 class NavigationBar extends Component {

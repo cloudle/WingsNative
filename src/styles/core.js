@@ -1,6 +1,18 @@
 import { StyleSheet } from 'react-native';
 import * as appConst from '../utils/const';
 
+export let sceneWrapper = {
+  paddingTop: appConst.navBarHeight,
+  backgroundColor: appConst.color.canvasBackground,
+};
+
+export let scrollView = {
+  groupWrapper: {
+    backgroundColor: 'white',
+    marginBottom: 10,
+  }
+};
+
 let container = {
   flex: 1,
   justifyContent: 'center',
@@ -29,11 +41,6 @@ let container = {
 let verticalContainer = {
   flexDirection: 'column',
   flex: 1,
-};
-
-export let sceneWrapper = {
-  paddingTop: appConst.navBarHeight,
-  backgroundColor: appConst.color.canvasBackground,
 };
 
 export default StyleSheet.create({

@@ -12,8 +12,13 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import { styles as navigatorStyles } from './defaultRouterMapper';
+import * as routes from '../utils/routes';
 
 class LeftButtons extends Component {
+	presentProjectSearch () {
+		this.props.navigator.push(routes.projectSearchEntry);
+	}
+
 	renderBack () {
 		return <ResponsibleTouchArea
 			staticRipple={true} onPress={() => this.props.navigator.pop()}>
@@ -27,7 +32,8 @@ class LeftButtons extends Component {
 		return <ResponsibleTouchArea
 			wrapperStyle={{marginLeft: 5}}
 			innerStyle={{padding: 7}}
-			staticRipple={true} onPress={() => this.props.navigator.pop()}>
+			staticRipple={true}
+			onPress={this.presentProjectSearch.bind(this)}>
 			<Text style={styles.searchIcon}>
 				<Ionicon name="ios-search" style={{fontSize: 24}}/>
 			</Text>

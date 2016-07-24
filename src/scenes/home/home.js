@@ -29,7 +29,6 @@ class Home extends Component {
 
   reset = () => {
     this.requestAnimationFrame(() => {
-      console.log("Hello world!");
       this.setState({counter: 0});
     });
   };

@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "EventEmitter": "^1.0.0",
     "faker": "^3.1.0",
     "react": "^15.2.1",
     "react-mixin": "^2.0.2",

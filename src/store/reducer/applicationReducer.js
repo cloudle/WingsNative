@@ -8,7 +8,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case actions.UpdateScene:
       return { ...state, scene: action.scene };

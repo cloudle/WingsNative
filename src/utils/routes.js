@@ -1,11 +1,14 @@
+import { Navigator } from 'react-native';
 import * as appConst from './const';
 import Greeting from '../scenes/greeting';
 import Home from '../scenes/home/home';
 import About from '../scenes/about/about';
 import SignIn from '../scenes/sign';
 import Sample from '../scenes/sample/sample';
+
 import ProjectList from '../scenes/project/list';
 import ProjectDetail from '../scenes/project/detail';
+import ProjectSearchEntry from '../scenes/project/searchEntry';
 
 import { buttons as leftButtons } from '../share/leftButtons';
 
@@ -50,4 +53,11 @@ export let projectList = {
 export let projectDetail = {
   title: 'CHI TIẾT',
   component: ProjectDetail,
+};
+
+export let projectSearchEntry = {
+	title: 'TÌM KIẾM',
+	component: ProjectSearchEntry,
+	rightButton: 'none',
+	transition: Navigator.SceneConfigs.FadeAndroid,
 };
